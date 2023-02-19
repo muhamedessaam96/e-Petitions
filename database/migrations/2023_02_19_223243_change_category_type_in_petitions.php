@@ -11,14 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('petitions', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->text('category');
-            $table->text('description');
-            $table->string('author');
-            $table->integer('signees');
-            $table->timestamps();
+        Schema::table('petitions', function (Blueprint $table) {
+            $table->string('category')->change();
         });
     }
 
@@ -27,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('petitions');
+        Schema::table('petitions', function (Blueprint $table) {
+            //
+        });
     }
 };
