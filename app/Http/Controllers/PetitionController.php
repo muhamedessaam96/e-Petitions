@@ -36,9 +36,9 @@ class PetitionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Petition $petition): Response
+    public function show(Petition $petition)
     {
-        //
+        return new PetitionResource($petition);
     }
 
     /**
@@ -46,7 +46,10 @@ class PetitionController extends Controller
      */
     public function update(Request $request, Petition $petition): Response
     {
-        //
+        $petition->update($request->only([
+            'title','description','category','auther','signees'
+        ]));
+        return new PetitionResource($petition);
     }
 
     /**
