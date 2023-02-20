@@ -18,7 +18,10 @@ class PetitionController extends Controller
         // $petition = Petition::all();
 
         // return PetitionResource::collection(Petition::all());
-        return new PetitionCollection(Petition::all());
+
+        // return new PetitionCollection(Petition::all());
+
+        return response()->json(new PetitionCollection(Petition::all()),Response::HTTP_OK);
     }
 
     /**
@@ -44,7 +47,7 @@ class PetitionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Petition $petition): Response
+    public function update(Request $request, Petition $petition)
     {
         $petition->update($request->only([
             'title','description','category','auther','signees'
@@ -55,8 +58,9 @@ class PetitionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Petition $petition): Response
+    public function destroy(Petition $petition)
     {
-        //
+        $petition->delete();
+       return response()->json(null,Response::HTTP_NO_CONTENT);
     }
 }
