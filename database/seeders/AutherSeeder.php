@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Auther;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,6 @@ class AutherSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Auther::factory()->times(10)->create();
     }
 }
